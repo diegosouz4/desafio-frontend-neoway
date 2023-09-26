@@ -1,0 +1,84 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;600&display=swap");
+
+:root {
+  --color-heart: #ec4e4e;
+  --color-main: #b74ae9;
+  --color-main-200: #510b72;
+  --color-bg: #33303b;
+  --color-text: #333;
+  --color-white: #fff;
+  --color-white-100: #dddddd;
+
+  --main-font: "Fira Sans", sans-serif;
+  --pop: cubic-bezier(0.7, -0.37, 0.4, 1.68);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--main-font);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+p {
+  margin: 0;
+  line-height: 1.35;
+  & + p {
+    margin-top: 1rem;
+  }
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a,
+button {
+  border: 0;
+  font-family: inherit;
+  text-decoration: none;
+}
+
+button,
+select {
+  cursor: pointer;
+}
+
+fieldset,
+input,
+select,
+textarea,
+option,
+label {
+  font-family: inherit;
+}
+
+.container {
+  width: 90%;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.sronly,
+label {
+  display: none;
+}

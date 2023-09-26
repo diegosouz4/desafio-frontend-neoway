@@ -1,0 +1,8 @@
+.app {
+  color: var(--color-white-100);
+  background-color: var(--color-bg);
+
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+}
