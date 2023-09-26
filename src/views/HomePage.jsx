@@ -6,8 +6,6 @@ import Card from "../componets/Card/Card";
 export default function HomePage() {
   const { news } = useSelector((rootReducer) => rootReducer.noticias);
 
-  console.log(news);
-
   return (
     <main>
       <section className={style.hero} aria-label="hero section">
@@ -21,10 +19,11 @@ export default function HomePage() {
           {news.loading && <p>Loading....</p>}
           {news.data?.articles && (
             <ul>
-              {news.data?.articles.map((noticia) => <Card key={noticia.title} noticia={noticia} />)}
+              {news.data?.articles.map((noticia) => (
+                <Card key={noticia.source.id} noticia={noticia} />
+              ))}
             </ul>
           )}
-
         </div>
       </section>
     </main>
