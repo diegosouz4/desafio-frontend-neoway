@@ -1,0 +1,25 @@
+.breadCrumb {
+  text-align: center;
+  a {
+    color: var(--color-white-100);
+    font-size: 0.875rem;
+    font-weight: 400;
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
+
+    &::after {
+      content: "/";
+      color: var(--color-white-100);
+      display: inline-block;
+      margin: 0 0.3125rem;
+    }
+  }
+
+  span {
+    color: var(--color-white);
+    font-weight: 700;
+    border-bottom: 2px solid var(--color-main);
+  }
+}

@@ -1,7 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import Layout from "../layout/Layout";
-import HomePage from "../views/HomePage";
-import FavoritesPage from "../views/FavoritesPage";
+import HomePage from "../views/HomePage/HomePage";
+import FavoritesPage from "../views/FavoritesPage/FavoritesPage";
+import SinglePost from "../views/SinglePost/SinglePost";
 
 export default function routers() {
   const routes = createBrowserRouter([
@@ -16,6 +17,10 @@ export default function routers() {
         {
           path: "/favoritos",
           element: <FavoritesPage />,
+        },
+        {
+          path: "/noticia/:title",
+          element: <SinglePost />,
         },
       ],
     },

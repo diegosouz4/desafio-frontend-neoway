@@ -9,6 +9,10 @@
   --color-white: #fff;
   --color-white-100: #dddddd;
 
+  --card-thumb:#333;
+  --card-overlay: linear-gradient( 90deg, var(--color-main-200) 0%, rgba(54, 12, 66, 0.2) 100% );
+  --card-icons: #7c7c7c;
+
   --main-font: "Fira Sans", sans-serif;
   --pop: cubic-bezier(0.7, -0.37, 0.4, 1.68);
 }
@@ -73,7 +77,7 @@ label {
 }
 
 .container {
-  width: 90%;
+  width: 95%;
   max-width: 1440px;
   margin: 0 auto;
 }
