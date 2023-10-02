@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { fetchNoticias } from "../../redux/noticias/noticias";
 import style from "./SearchBar.module.scss";
+import { SetLocalStore } from "../../hooks/useLocalStore";
 
 const initialState = {
   q: "",
@@ -16,6 +17,7 @@ export default function SearchBar() {
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(fetchNoticias(query));
+    SetLocalStore("query", query);
   }
 
   return (

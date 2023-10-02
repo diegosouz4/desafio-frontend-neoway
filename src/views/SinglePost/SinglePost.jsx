@@ -2,28 +2,36 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { GetLocalStore } from "../../hooks/useLocalStore";
 import Hero from "../../componets/Hero/Hero";
+import useSeo from "../../hooks/useSeo";
 import { Link, useParams } from "react-router-dom";
 import style from "./SinglePost.module.scss";
+import Loader from "../../componets/Loader/Loader";
 
 export default function SinglePost() {
   const [post, setPost] = React.useState(null);
+  const [loading, setLoading] = React.useState(false);
 
   const { news } = useSelector((rootReducer) => rootReducer.noticias);
   const { title } = useParams();
 
+  useSeo(title, post?.description);
+
   React.useEffect(() => {
+    setLoading(true);
+
     if (news.data === null) {
       const localStore = GetLocalStore("post");
       setPost(localStore ? localStore : null);
-      return;
+    } else {
+      news.data.articles.some((post) => {
+        if (post.title === title) {
+          setPost(post);
+          return;
+        }
+      });
     }
 
-    news.data.articles.some((post) => {
-      if (post.title === title) {
-        setPost(post);
-        return;
-      }
-    });
+    setLoading(false);
   }, []);
 
   if (post === null) {
@@ -43,25 +51,41 @@ export default function SinglePost() {
   return (
     <main>
       <div className="container">
-        <Hero {...post} />
+        {loading && <Loader />}
+       
+       {post && (
+          <>
+            <Hero {...post} />
 
-        <section className={style.content}>
-          <div className={`container ${style.container}`}>
-            {post.source.name && (
-              <h3 className={style.source}>
-                Source: <strong>{post.source.name}</strong>
-              </h3>
-            )}
+            <section className={style.content}>
+              <div className={`container ${style.container}`}>
+                {post.source.name && (
+                  <h3 className={style.source}>
+                    Source: <strong>{post.source.name}</strong>
+                  </h3>
+                )}
 
-            {post.content && <p>{post.content}</p>}
+                {post.content && <p>{post.content}</p>}
 
-            {post.url && <a className={style.link} href={post.url} rel="noopen noreferrer" target="_blank" title={post.title}>Ver matéria completa</a>}
-          </div>
-        </section>
+                {post.url && (
+                  <a
+                    className={style.link}
+                    href={post.url}
+                    rel="noopen noreferrer"
+                    target="_blank"
+                    title={post.title}
+                  >
+                    Ver matéria completa
+                  </a>
+                )}
+              </div>
+            </section>
 
-        <div className={style.backHome}>
-          <Link to='/'>Voltar para a home</Link>
-        </div>
+            <div className={style.backHome}>
+              <Link to="/">Voltar para a home</Link>
+            </div>
+          </>
+        )}
       </div>
     </main>
   );
