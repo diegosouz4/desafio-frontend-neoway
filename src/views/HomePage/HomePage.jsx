@@ -6,6 +6,7 @@ import useSeo from "../../hooks/useSeo";
 import { GetLocalStore } from "../../hooks/useLocalStore";
 import React from "react";
 import Loader from "../../componets/Loader/Loader";
+import OrderBy from "../../componets/OrderBy/OrderBy";
 
 export default function HomePage() {
   const { news } = useSelector((rootReducer) => rootReducer.noticias);
@@ -19,7 +20,7 @@ export default function HomePage() {
   React.useEffect(() => {
     const localQuery = GetLocalStore("query");
     if (localQuery) setQuery(localQuery);
-  }, []);
+  }, [news]);
 
   return (
     <main>
@@ -31,20 +32,24 @@ export default function HomePage() {
 
       <section className={style.content}>
         <div className="container">
-          {query && (
-            <h2 className={style.title}>
-              Resultados para a palavra: <strong>{query.q}</strong>
-            </h2>
-          )}
-
           {news.loading && <Loader />}
-          
+
           {news.data?.articles && (
-            <ul className={style.list}>
-              {news.data?.articles.map((noticia) => (
-                <Card key={noticia.source.id} noticia={noticia} />
-              ))}
-            </ul>
+            <>
+              {query && (
+                <h2 className={style.title}>
+                  Resultados para a palavra: <strong>{query.q}</strong>
+                </h2>
+              )}
+
+              <OrderBy />
+
+              <ul className={style.list}>
+                {news.data?.articles.map((noticia) => (
+                  <Card key={noticia.source.id} noticia={noticia} />
+                ))}
+              </ul>
+            </>
           )}
         </div>
       </section>

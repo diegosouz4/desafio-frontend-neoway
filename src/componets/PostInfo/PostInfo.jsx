@@ -7,8 +7,6 @@ export default function PostInfo({ publishedAt, author, className, likes }) {
   const newDate = formattedDate(publishedAt) || null;
   const formattedAuthor = formattedText(author, 15) || null;
 
-  console.log(likes);
-
   return (
     <div className={className}>
       {newDate && (
@@ -31,7 +29,7 @@ export default function PostInfo({ publishedAt, author, className, likes }) {
 }
 
 PostInfo.propTypes = {
-  author: PropTypes.string.isRequired,
+  author: PropTypes.string,
   publishedAt: PropTypes.string.isRequired,
   className: PropTypes.string,
   likes: PropTypes.bool,

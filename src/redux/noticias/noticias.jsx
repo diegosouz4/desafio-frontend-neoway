@@ -35,6 +35,12 @@ const slice = createSlice({
     updateNewsLikes(state, action) {
       state.news.data.articles = action.payload;
     },
+    sortNewsBy(state, action) {
+      state.news.data.articles = action.payload;
+    },
+    sortLikesBy(state, action) {
+      state.news.likes = action.payload;
+    },
   },
 });
 
@@ -44,6 +50,8 @@ const {
   fetchNewsError,
   setLikesList,
   updateNewsLikes,
+  sortNewsBy,
+  sortLikesBy,
 } = slice.actions;
 
 export const fetchNoticias = (query) => async (dispatch) => {
@@ -114,6 +122,19 @@ export const handleritemLikes = (noticias, likes) => (dispatch) => {
   });
 
   return dispatch(updateNewsLikes(newArray));
+};
+
+export const updateNewsByOrder = (arr, value, origin) => (dispatch) => {
+  let newArray = [...arr].sort((a, b) =>
+    a[value] > b[value] ? 1 : a[value] < b[value] ? -1 : 0
+  );
+
+  if (origin && origin === "likes") {
+    dispatch(sortLikesBy(newArray));
+    return;
+  }
+
+  dispatch(sortNewsBy(newArray));
 };
 
 export default slice.reducer;

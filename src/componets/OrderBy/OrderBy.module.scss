@@ -1,0 +1,55 @@
+.wrapper {
+  width: 92%;
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-bottom: 0.3125rem;
+  fieldset {
+    border: 0;
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.625rem;
+
+    position: relative;
+    animation: fadeInUp 1s forwards ease;
+    opacity: 0;
+    transform: translate3d(0, 50px, 0);
+
+    .label {
+      color: var(--color-white-100);
+      display: block;
+      font-size: 0.75rem;
+    }
+
+    .select {
+      color: var(--color-text);
+      border: 0;
+      border-radius: 0.25rem;
+      border: 2px solid transparent;
+      background-color: #cbcbcb;
+      height: 2rem;
+      padding: 0.3125rem 0.625rem;
+      width: 100%;
+      max-width: 6.5rem;
+
+      &:focus,
+      &:hover {
+        border: 2px solid var(--color-main);
+        outline-color: var(--color-main);
+      }
+    }
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 50px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}

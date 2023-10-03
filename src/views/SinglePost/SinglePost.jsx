@@ -18,21 +18,22 @@ export default function SinglePost() {
 
   React.useEffect(() => {
     setLoading(true);
+    let postData;
 
-    if (news.data === null) {
-      const localStore = GetLocalStore("post");
-      setPost(localStore ? localStore : null);
+    const localPost = GetLocalStore("post");
+    if (localPost) {
+      postData = localPost;
     } else {
-      news.data.articles.some((post) => {
-        if (post.title === title) {
-          setPost(post);
-          return;
-        }
-      });
+      postData =
+        news.data !== null
+          ? news.data.articles.find((item) => item.title === title)
+          : news.likes.find((item) => item.title === title);
     }
 
+    setPost(postData || null);
+
     setLoading(false);
-  }, []);
+  }, [news, title]);
 
   if (post === null) {
     return (
@@ -52,8 +53,8 @@ export default function SinglePost() {
     <main>
       <div className="container">
         {loading && <Loader />}
-       
-       {post && (
+
+        {post && (
           <>
             <Hero {...post} />
 
