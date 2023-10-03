@@ -2,6 +2,11 @@
   padding: 0.625rem;
   flex: 0 0 300px;
 
+  opacity: 0;
+  transform: translate3d(0, 50px, 0);
+  position: relative;
+  animation: 200ms fadeInUp 1s forwards ease;
+
   .wrapper {
     background-color: var(--color-white-100);
     border-radius: 0.25rem;
@@ -25,6 +30,44 @@
     display: grid;
     grid-template-rows: auto 120px;
     gap: 1rem;
+
+    .likes {
+      background: none;
+      background-color: rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 50%;
+      box-shadow: 0 0.5rem 1rem -0.25rem rgba(0, 0, 0, 0.35);
+      width: 2rem;
+      height: 2rem;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      position: absolute;
+      top: 0.625rem;
+      right: 0.625rem;
+      z-index: 1;
+
+      &:focus {
+        .icon {
+          animation: puse 800ms forwards ease;
+        }
+      }
+
+      .icon {
+        font-size: 1rem;
+        color: var(--color-main-200);
+
+        position: relative;
+        transform: scale3d(1, 1, 1);
+
+        &.fill {
+          color: var(--color-main);
+        }
+      }
+    }
+
     .thumb {
       display: block;
       width: 100%;
@@ -76,5 +119,31 @@
         }
       }
     }
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 50px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes puse {
+  0% {
+    color: currentColor;
+    transform: scale3d(0.5, 0.5, 0.5);
+  }
+  50% {
+    color: var(--color-heart);
+    transform: scale3d(1.4, 1.4, 1.4);
+  }
+  75% {
+    color: currentColor;
+    transform: scale3d(1, 1, 1);
   }
 }

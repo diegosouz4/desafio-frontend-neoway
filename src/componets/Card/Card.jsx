@@ -4,12 +4,21 @@ import PropTypes from "prop-types";
 import PostInfo from "../PostInfo/PostInfo";
 import { Link } from "react-router-dom";
 import { SetLocalStore } from "../../hooks/useLocalStore";
+import { FaHeart, FaRegHeart } from "react-icons/fa6";
+import { useDispatch } from "react-redux";
+import { addLikesItem } from "../../redux/noticias/noticias";
 
 export default function Card({ noticia }) {
   const title = formattedText(noticia?.title);
+  const dispatch = useDispatch();
 
   const handleClick = () => {
     SetLocalStore("post", noticia);
+  };
+
+  const handleLikesClick = (e) => {
+    e.preventDefault();
+    dispatch(addLikesItem(noticia));
   };
 
   return (
@@ -32,6 +41,22 @@ export default function Card({ noticia }) {
             className={style.info}
           />
         </div>
+
+        <button className={style.likes} onClick={handleLikesClick}>
+          {noticia.likes ? (
+            <>
+              {" "}
+              <span className="sronly"> remover dos favorito</span>
+              <FaHeart className={style.icon} />
+            </>
+          ) : (
+            <>
+              {" "}
+              <span className="sronly">salvar nos favorito</span>
+              <FaRegHeart className={style.icon} />
+            </>
+          )}
+        </button>
       </Link>
     </li>
   );

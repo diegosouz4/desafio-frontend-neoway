@@ -3,7 +3,13 @@ import PropTypes from "prop-types";
 import style from "./Hero.module.scss";
 import PostInfo from "../PostInfo/PostInfo";
 
-export default function Hero({ author, publishedAt, title, urlToImage }) {
+export default function Hero({
+  author,
+  publishedAt,
+  title,
+  urlToImage,
+  likes,
+}) {
   return (
     <section
       className={style.hero}
@@ -17,6 +23,7 @@ export default function Hero({ author, publishedAt, title, urlToImage }) {
           <PostInfo
             author={author}
             publishedAt={publishedAt}
+            likes={likes}
             className={style.info}
           />
         </div>
@@ -30,4 +37,5 @@ Hero.propTypes = {
   author: PropTypes.string,
   publishedAt: PropTypes.string,
   urlToImage: PropTypes.string,
+  likes: PropTypes.bool,
 };

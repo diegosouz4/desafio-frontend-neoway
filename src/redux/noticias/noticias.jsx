@@ -1,10 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { GetLocalStore, SetLocalStore } from "../../hooks/useLocalStore";
 
 const initialState = {
   news: {
     loading: false,
     data: null,
     error: null,
+    likes: [],
   },
 };
 
@@ -27,10 +29,22 @@ const slice = createSlice({
         (state.news.data = null),
         (state.news.error = action.payload);
     },
+    setLikesList(state, action) {
+      state.news.likes = action.payload;
+    },
+    updateNewsLikes(state, action) {
+      state.news.data.articles = action.payload;
+    },
   },
 });
 
-const { fetchNewsStart, fetchNewsSuccess, fetchNewsError } = slice.actions;
+const {
+  fetchNewsStart,
+  fetchNewsSuccess,
+  fetchNewsError,
+  setLikesList,
+  updateNewsLikes,
+} = slice.actions;
 
 export const fetchNoticias = (query) => async (dispatch) => {
   const { q, language, sortBy } = query;
@@ -47,11 +61,59 @@ export const fetchNoticias = (query) => async (dispatch) => {
       (item) => item.title !== "[Removed]" && item.title !== null
     );
     //Alterando os id's null pelo index da notícia.
-    data.articles = await data.articles.map((item, index) =>({...item, source: {...item.source, id: index}}));
+    data.articles = await data.articles.map((item, index) => ({
+      ...item,
+      source: { ...item.source, id: index },
+      likes: false,
+    }));
+    //Valida se a notícia está salva como favorita.
+    const likesList = GetLocalStore("newsLikes");
+    if (likesList) {
+      data.articles = await data.articles.map((item) => ({
+        ...item,
+        likes: likesList.find((local) =>
+          local.title === item.title ? true : false
+        ),
+      }));
+    }
+
     return dispatch(fetchNewsSuccess(data));
   } catch (error) {
     dispatch(fetchNewsError(error.message));
   }
+};
+
+export const addLikesItem = (noticia) => (dispatch) => {
+  //Puxar as notícias no localStorage
+  let localStorageLikes = GetLocalStore("newsLikes") || [];
+
+  // Verificar se a notícia já está como favorita
+  if (!noticia) {
+    dispatch(setLikesList(localStorageLikes));
+    return;
+  }
+
+  //Se tiver remover
+  if (localStorageLikes.find((item) => item.title === noticia.title)) {
+    localStorageLikes = localStorageLikes.filter(
+      (item) => item.title !== noticia.title
+    );
+  } else {
+    //Se não adicionar
+    localStorageLikes = [...localStorageLikes, { ...noticia, likes: true }];
+  }
+  //fazer o dispatch para o reducer
+  SetLocalStore("newsLikes", localStorageLikes);
+  dispatch(setLikesList(localStorageLikes));
+};
+
+export const handleritemLikes = (noticias, likes) => (dispatch) => {
+  const newArray = noticias.map((noticia) => {
+    const isFavorite = likes.find((item) => item.title === noticia.title);
+    return { ...noticia, likes: !!isFavorite };
+  });
+
+  return dispatch(updateNewsLikes(newArray));
 };
 
 export default slice.reducer;
