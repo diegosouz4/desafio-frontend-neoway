@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Breadcrumb/> Should be rendering 1`] = `
+<DocumentFragment>
+  <div
+    class="undefined undefined"
+  >
+    <a
+      href="/"
+    >
+      home
+    </a>
+    <span>
+      Example Title
+    </span>
+  </div>
+</DocumentFragment>
+`;

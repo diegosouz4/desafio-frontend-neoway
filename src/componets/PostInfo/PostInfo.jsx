@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import formattedDate from "../../util/formattedDate";
-import { FaBookmark, FaCalendar, FaUser } from "react-icons/fa6";
 import formattedText from "../../util/formattedText";
+import { FaBookmark, FaCalendar, FaUser } from "react-icons/fa6";
 
 export default function PostInfo({ publishedAt, author, className, likes }) {
   const newDate = formattedDate(publishedAt) || null;
