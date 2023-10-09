@@ -46,7 +46,7 @@ export default function Card({ noticia }) {
           {noticia.likes ? (
             <>
               {" "}
-              <span className="sronly"> remover dos favorito</span>
+              <span className="sronly">remover dos favorito</span>
               <FaHeart className={style.icon} />
             </>
           ) : (
