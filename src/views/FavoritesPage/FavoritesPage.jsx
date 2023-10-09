@@ -31,6 +31,8 @@ export default function FavoritesPage() {
     dispatch(addLikesItem());
   }, []);
 
+  console.log(news?.likes)
+
   if (error) {
     return (
       <main className={style.error}>

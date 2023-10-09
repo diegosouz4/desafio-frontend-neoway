@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SearchBar /> should SearchBar was rendered 1`] = `
+<DocumentFragment>
+  <form
+    data-testid="form"
+  >
+    <fieldset>
+      <label
+        for="q"
+      >
+        Buscar
+      </label>
+      <input
+        name="q"
+        placeholder="buscar..."
+        required=""
+        type="text"
+        value=""
+      />
+    </fieldset>
+    <fieldset>
+      <label
+        for="language"
+      >
+        Qual o idioma?
+      </label>
+      <select
+        id="language"
+      >
+        <option
+          value="en"
+        >
+          EN
+        </option>
+        <option
+          value="es"
+        >
+          ES
+        </option>
+        <option
+          value="fr"
+        >
+          FR
+        </option>
+        <option
+          value="pt"
+        >
+          PT
+        </option>
+      </select>
+    </fieldset>
+    <fieldset>
+      <label
+        for="filterBy"
+      >
+        Filtrar por:
+      </label>
+      <select
+        id="filterBy"
+      >
+        <option
+          value="relevancy"
+        >
+          Relevância
+        </option>
+        <option
+          value="popularity"
+        >
+          Popularidade
+        </option>
+        <option
+          value="publishedAt"
+        >
+          Data da publicação
+        </option>
+      </select>
+    </fieldset>
+    <button>
+      Buscar
+    </button>
+  </form>
+</DocumentFragment>
+`;

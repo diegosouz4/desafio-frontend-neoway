@@ -110,6 +110,12 @@ export const addLikesItem = (noticia) => (dispatch) => {
     //Se não adicionar
     localStorageLikes = [...localStorageLikes, { ...noticia, likes: true }];
   }
+  //cria novos ids
+  localStorageLikes = localStorageLikes.map((item, index) => ({
+    ...item,
+    source: { ...item.source, id: index },
+  }));
+
   //fazer o dispatch para o reducer
   SetLocalStore("newsLikes", localStorageLikes);
   dispatch(setLikesList(localStorageLikes));
