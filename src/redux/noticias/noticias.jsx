@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { GetLocalStore, SetLocalStore } from "../../hooks/useLocalStore";
+import axios from "axios";
 
 const initialState = {
   news: {
@@ -60,35 +61,38 @@ export const fetchNoticias = (query) => async (dispatch) => {
     import.meta.env.VITE_API_TOKEN_TESTE
   }&pageSize=100`;
 
-  try {
-    dispatch(fetchNewsStart());
-    const response = await fetch(url);
-    const data = await response.json();
-    //Removendo as notícias
-    data.articles = await data.articles.filter(
-      (item) => item.title !== "[Removed]" && item.title !== null
-    );
-    //Alterando os id's null pelo index da notícia.
-    data.articles = await data.articles.map((item, index) => ({
-      ...item,
-      source: { ...item.source, id: index },
-      likes: false,
-    }));
-    //Valida se a notícia está salva como favorita.
-    const likesList = GetLocalStore("newsLikes");
-    if (likesList) {
-      data.articles = await data.articles.map((item) => ({
-        ...item,
-        likes: likesList.find((local) =>
-          local.title === item.title ? true : false
-        ),
-      }));
-    }
+  dispatch(fetchNewsStart());
 
-    return dispatch(fetchNewsSuccess(data));
-  } catch (error) {
-    dispatch(fetchNewsError(error.message));
-  }
+  axios
+    .get(url)
+    .then(({ data }) => {
+      let result = { ...data };
+
+      //Removendo as notícias
+      result.articles = result.articles.filter(
+        (item) => item.title !== "[Removed]" && item.title !== null
+      );
+
+      //Alterando os id's null pelo index da notícia.
+      result.articles = result.articles.map((item, index) => ({
+        ...item,
+        source: { ...item.source, id: index },
+        likes: false,
+      }));
+
+      //Valida se a notícia está salva como favorita.
+      const likesList = GetLocalStore("newsLikes");
+      if (likesList) {
+        result.articles = result.articles.map((item) => ({
+          ...item,
+          likes: likesList.find((local) =>
+            local.title === item.title ? true : false
+          ),
+        }));
+      }
+      return dispatch(fetchNewsSuccess(result));
+    })
+    .catch((error) => dispatch(fetchNewsError(error.message)));
 };
 
 export const addLikesItem = (noticia) => (dispatch) => {
