@@ -21,7 +21,7 @@ export default function SearchBar() {
   }
 
   return (
-    <form className={style.form} onSubmit={handleSubmit}>
+    <form data-testid="form" className={style.form} onSubmit={handleSubmit}>
       <fieldset>
         <label htmlFor="q">Buscar</label>
         <input
@@ -41,7 +41,7 @@ export default function SearchBar() {
         <label htmlFor="language">Qual o idioma?</label>
         <select
           className={style.select}
-          name="language"
+          id="language"
           value={query.language}
           onChange={({ target }) =>
             setQuery((prev) => {
@@ -57,8 +57,9 @@ export default function SearchBar() {
       </fieldset>
 
       <fieldset>
-        <label htmlFor="language">Filtrar por:</label>
+        <label htmlFor="filterBy">Filtrar por:</label>
         <select
+          id="filterBy"
           className={style.select}
           value={query.sortBy}
           onChange={({ target }) =>
