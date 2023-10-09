@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<OrderBy /> should OrdernBy was rendered 1`] = `
+<DocumentFragment>
+  <div>
+    <fieldset>
+      <label
+        for="orderby"
+      >
+        Ordernar por: 
+      </label>
+      <select
+        id="orderby"
+      >
+        <option
+          value=""
+        >
+          Selecionar
+        </option>
+        <option
+          value="author"
+        >
+          Autor
+        </option>
+        <option
+          value="publishedAt"
+        >
+          Publicação
+        </option>
+        <option
+          value="title"
+        >
+          Título
+        </option>
+      </select>
+    </fieldset>
+  </div>
+</DocumentFragment>
+`;
