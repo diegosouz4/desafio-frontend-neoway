@@ -56,3 +56,5 @@ exports[`<PostInfo /> should be render 1`] = `
   </div>
 </DocumentFragment>
 `;
+
+exports[`<PostInfo /> should like button not render 1`] = `[Function]`;

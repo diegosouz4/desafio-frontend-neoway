@@ -46,11 +46,21 @@ describe("<PostInfo />", () => {
 
     render(
       <BrowserRouter>
-        <PostInfo {...mockInfo} />
+        <PostInfo {...mockInfo} publishedAt={dateFormatted} />
       </BrowserRouter>
     );
 
     const renderDate = screen.getByText(dateFormatted);
     expect(renderDate).toBeInTheDocument();
+  });
+
+  it("should like button not render", () => {
+    const { asFragment } = render(
+      <BrowserRouter>
+        <PostInfo {...mockInfo} likes={false} />
+      </BrowserRouter>
+    );
+
+    expect(asFragment).toMatchSnapshot();
   });
 });

@@ -30,7 +30,7 @@ export default function PostInfo({ publishedAt, author, className, likes }) {
 
 PostInfo.propTypes = {
   author: PropTypes.string,
-  publishedAt: PropTypes.string.isRequired,
+  publishedAt: PropTypes.string,
   className: PropTypes.string,
   likes: PropTypes.bool,
 };
