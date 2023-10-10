@@ -5,26 +5,29 @@ import FavoritesPage from "../views/FavoritesPage/FavoritesPage";
 import SinglePost from "../views/SinglePost/SinglePost";
 
 export default function routers() {
-  const routes = createBrowserRouter([
-    {
-      path: "/",
-      element: <Layout />,
-      children: [
-        {
-          path: "/",
-          element: <HomePage />,
-        },
-        {
-          path: "/favoritos",
-          element: <FavoritesPage />,
-        },
-        {
-          path: "/noticia/:title",
-          element: <SinglePost />,
-        },
-      ],
-    },
-  ]);
+  const routes = createBrowserRouter(
+    [
+      {
+        path: "/",
+        element: <Layout />,
+        children: [
+          {
+            path: "/",
+            element: <HomePage />,
+          },
+          {
+            path: "/favoritos",
+            element: <FavoritesPage />,
+          },
+          {
+            path: "/noticia/:title",
+            element: <SinglePost />,
+          },
+        ],
+      },
+    ],
+    { basename: "/desafio-frontend-neoway" }
+  );
 
   return routes;
 }
