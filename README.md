@@ -6,14 +6,14 @@ Este projeto foi desenvolvido como parte do processo seletivo para a vaga de Fro
 
 ## Funcionalidades
 
-- **Input de Busca:** Um campo de busca permite que os usuários digitem consultas e escolha o idioma para filtrar as notícias em tempo real.
-- **Adicionar aos Favoritos:** Os usuários podem adicionar notícias aos favoritos para fácil acesso posterior.
-- **Cache:** É usado localStorage para salvar a última notícia aberta.
-- **Filtro:** Os usuários podem filtrar as notícias com base em uma consulta fornecida.
-- **SPA (Single Page Application):** A aplicação é uma SPA, proporcionando uma experiência de usuário mais fluida.
-- **Responsivo:** O layout da aplicação é responsivo, garantindo uma boa experiência em diferentes dispositivos.
-- **Redux:** Foi utilizado o Redux para fazer o gerenciamento dos estado da aplicação.
-- **Acessibilidade:** Foi utilizado tags semânticas para melhorar a acessibilidade da aplicação.
+- [x] **Input de Busca:** Um campo de busca permite que os usuários digitem consultas e escolha o idioma para filtrar as notícias em tempo real.
+- [x] **Adicionar aos Favoritos:** Os usuários podem adicionar notícias aos favoritos para fácil acesso posterior.
+- [x] **Cache:** É usado localStorage para salvar a última notícia aberta.
+- [x] **Filtro:** Os usuários podem filtrar as notícias com base em uma consulta fornecida.
+- [x] **SPA (Single Page Application):** A aplicação é uma SPA, proporcionando uma experiência de usuário mais fluida.
+- [x] **Responsivo:** O layout da aplicação é responsivo, garantindo uma boa experiência em diferentes dispositivos.
+- [x] **Redux:** Foi utilizado o Redux para fazer o gerenciamento dos estado da aplicação.
+- [x] **Acessibilidade:** Foi utilizado tags semânticas para melhorar a acessibilidade da aplicação.
 
 ## Pré-requisitos
 
@@ -34,6 +34,4 @@ Para executar o projeto, siga estas etapas:
 
 ## Projeto Online
 
-O projeto também está disponível no Github Pages: [Visualizar Projeto](https://diegosouz4.github.io/desafio-frontend-neoway/). Mas, a API usada não permite requisições fora do ambiente de desenvolvimento, por isso, é recomendável visualizar o projeto localmente para garantir a funcionalidade completa. 
-
-**Nota:** Infelizmente, a API usada não permite requisições fora do ambiente de desenvolvimento, por isso, é recomendável visualizar o projeto localmente para garantir a funcionalidade completa.
+O projeto também está disponível no Github Pages: [Visualizar Projeto](https://diegosouz4.github.io/desafio-frontend-neoway/). Mas, a API usada **não permite requisições fora do ambiente de desenvolvimento**, por isso, é recomendável visualizar o projeto localmente para garantir a funcionalidade completa. 
